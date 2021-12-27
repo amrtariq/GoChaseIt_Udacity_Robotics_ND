@@ -1,0 +1,12 @@
+<launch>
+  <!--Load the joint controllers to param server-->
+  <rosparam file="$(find my_robot)/config/controllers.yaml" command="load"/>
+
+  <!--Load controllers-->
+  <node name="spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/my_robot" args="joint_state_controller
+    right_wheel_hinge_velocity_controller
+    left_wheel_hinge_velocity_controller
+    right_wheel_back_hinge_velocity_controller
+    left_wheel_back_hinge_velocity_controller"/>
+</launch>
