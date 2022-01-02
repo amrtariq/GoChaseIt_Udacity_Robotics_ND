@@ -5,6 +5,7 @@
 // Define a global client that can request services
 ros::ServiceClient client;
 
+
 // This function calls the DriveToTarget service to drive the robot in the specified direction
 void drive_robot(float lin_x, float ang_z)
 {
@@ -35,19 +36,32 @@ void process_image_callback(const sensor_msgs::Image img)
 	ROS_INFO_STREAM("Image Processing Started...");
     // Loop through each pixel in the image and check if its equal to the white value
     for (i = 0; i < img.height; i++){
-	for (j = 0; j < img.step; j++)
+	for (j = 0; j < (img.width-2); j++)
 	 {
+
+    ball_found = (img.data[((j*3)+(i*img.step))] == white_pixel)
+        &&(img.data[((j*3)+(i*img.step))+1] == white_pixel)
+        &&(img.data[((j*3)+(i*img.step))+2] == white_pixel);
+
+
+
+        //ROS_INFO_STREAM("Iter: i,j "+std::to_string(i)+" , "+std::to_string(j));
 	//ROS_INFO_STREAM("Current Loop i"+ std::to_string(i)+" j"+ std::to_string(j)+" data "+std::to_string(j+((img.step)*i)));
-        if (img.data[j+((img.step)*i)] == white_pixel) {
+//ROS_INFO_STREAM(std::to_string(img.data[(j+(i*img.step))]));
+//ROS_INFO_STREAM(std::to_string(img.data[(j+(i*img.step))+1]));
+//ROS_INFO_STREAM(std::to_string(img.data[(j+(i*img.step))+2]));
+
+        if (ball_found) 
+        {
 	//if (img.data[i*j] == white_pixel) {
-		
-		ball_found=true;
+	//ROS_INFO_STREAM("condition: i,j "+std::to_string(img.width)+" "+std::to_string(i)+" , "+std::to_string(j));	
 		ball_location = j;
             	break;
         }
+
+    }
 	if(ball_found)
 		break;
-    }
 }
 
 	    // Then, identify if this pixel falls in the left, mid, or right side of the image
@@ -56,12 +70,12 @@ void process_image_callback(const sensor_msgs::Image img)
 
 	if (ball_found)
 	{	
-		//ROS_INFO_STREAM("img/3 "+ std::to_string(img.step/3));
-		if (ball_location<(img.step/3)){
+		//ROS_INFO_STREAM("img/3 "+ std::to_string(img.width/3)+"Location: "+std::to_string(ball_location));
+		if (ball_location<(img.width/3)){
 		drive_robot(0,0.5);
 		ROS_INFO_STREAM("Ball Found Left "+ std::to_string(ball_location));
 		}
-		else if (ball_location>((img.step/3)*2)){
+		else if (ball_location>((img.width/3)*2)){
 		drive_robot(0,-0.5);
 		ROS_INFO_STREAM("Ball Found Right "+ std::to_string(ball_location));
 		}
