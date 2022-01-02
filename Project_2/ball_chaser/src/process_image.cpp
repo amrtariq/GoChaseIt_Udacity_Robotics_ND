@@ -36,7 +36,7 @@ void process_image_callback(const sensor_msgs::Image img)
 	ROS_INFO_STREAM("Image Processing Started...");
     // Loop through each pixel in the image and check if its equal to the white value
     for (i = 0; i < img.height; i++){
-	for (j = 0; j < (img.width-2); j++)
+	for (j = 0; j < (img.width); j++)
 	 {
 
     ball_found = (img.data[((j*3)+(i*img.step))] == white_pixel)
