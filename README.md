@@ -1,6 +1,11 @@
 # Go Chase It Udacity Robotics ND
 
-![image](https://github.com/amrtariq/GoChaseIt_Udacity_Robotics_ND/blob/main/GoChaseIt.gif)
+
+##Before Localization
+![image](https://github.com/amrtariq/Project_3/blob/main/WhereAmI/src/my_robot/screenshots/1-%20init.png)
+
+##After Localization
+![image](https://github.com/amrtariq/Project_3/blob/main/WhereAmI/src/my_robot/screenshots/2-%20localized.png)
 
 - Build a robot in URDF.
 - Add Camera to Robot.
@@ -59,4 +64,4 @@ $ cd (your catkin workspace dir)
 $ source devel/setup.bash
 $ roslaunch my_robot world.launch
 ```
-
+![image](https://github.com/amrtariq/GoChaseIt_Udacity_Robotics_ND/blob/main/GoChaseIt.gif)
