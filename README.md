@@ -1,13 +1,6 @@
 # Go Chase It Udacity Robotics ND
 
-
-## Before Localization
-
-![image](https://github.com/amrtariq/Project_3/blob/main/WhereAmI/src/my_robot/screenshots/1-%20init.png)
-
-## After Localization
-
-![image](https://github.com/amrtariq/Project_3/blob/main/WhereAmI/src/my_robot/screenshots/2-%20localized.png)
+![image](https://github.com/amrtariq/GoChaseIt_Udacity_Robotics_ND/blob/main/GoChaseIt.gif)
 
 - Build a robot in URDF.
 - Add Camera to Robot.
@@ -64,6 +57,6 @@ Step 5: In new Terminal, Launch ball_chaser and drive_bot nodes
 ```
 $ cd (your catkin workspace dir)
 $ source devel/setup.bash
-$ roslaunch my_robot world.launch
+$ roslaunch ball_chaser ball_chaser.launch
 ```
-![image](https://github.com/amrtariq/GoChaseIt_Udacity_Robotics_ND/blob/main/GoChaseIt.gif)
+
